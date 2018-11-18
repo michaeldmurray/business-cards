@@ -44,6 +44,14 @@ export class TextDetectionService {
       const card: BusinessCard = {};
       card.email = this.findEmail(result);
       card.phoneNumber = this.findPhoneNumber(result);
+      const fullName: String = this.findName(result);
+      if (fullName.length > 2) {
+        card.firstName = fullName.split(' ')[0];
+        card.lastName = fullName.split(' ')[1];
+      } else {
+        card.firstName = '';
+        card.lastName = '';
+      }
       card.extraText = result;
       card.imageUri = imageUri;
       console.log(card);
@@ -60,6 +68,12 @@ export class TextDetectionService {
 
   findEmail(input: String): String {
     const pattern: RegExp = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/g;
+    return this.findPattern(input, pattern);
+  }
+
+  findName(input: String): String {
+    // Future improvement: improve the accuracy by using some external name db to filter out unlikely results.
+    const pattern: RegExp = /([A-Za-z\-\']+\ [A-Za-z\-\']+)/g;
     return this.findPattern(input, pattern);
   }
 

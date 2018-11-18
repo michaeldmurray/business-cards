@@ -1,25 +1,42 @@
 <div>
     <button (click)="onDetectionClick()" class="btn btn-primary btn-danger"> Detect </button>
 </div>
+<h5>Search Cards</h5>
 <div>
-    <h5>Search Cards</h5>
-    <div>
-        <input
-          placeholder="enter email"
-          [(ngModel)]="searchText"
-        />
+    <div style="display: inline-block">
+        <div>
+            <input
+            placeholder="enter email"
+            [(ngModel)]="emailSearchText"
+            />
+        </div>
+        <div>
+            <button (click)="onSearchByEmail()">Search by Email</button>
+        </div>
     </div>
-    <div>
-        <button (click)="onSearch()">Search</button>
+    <div style="display: inline-block">
+        <div>
+            <input
+                placeholder="enter name"
+                [(ngModel)]="nameSearchText"
+            />
+        </div>
+        <div>
+            <button (click)="onSearchByName()">Search by Name</button>
+        </div>
     </div>
 </div>
 <div>
     <h5>Search Results</h5>
+    <app-business-card
+      *ngFor = "let card of searchResults"
+      [businessCard]="card">
+    </app-business-card>
 </div>
 <div>
     <h5>All Business Cards</h5>
     <app-business-card
-      *ngFor = "let card of businessCards | async"
+      *ngFor = "let card of businessCards"
       [businessCard]="card">
     </app-business-card>
 </div>

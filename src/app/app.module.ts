@@ -24,7 +24,8 @@ import { LoginService } from './login/login.service';
 import { TextDetectionService } from './text-detection.service';
 import { HistoryService } from './history/history.service';
 
-import {AuthGuard} from './login/auth.guard';
+import { AdminGuard } from './login/admin.guard';
+import { AuthGuard } from './login/auth.guard';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import {AuthGuard} from './login/auth.guard';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard, DashboardService, HistoryService, LoginService, TextDetectionService],
+  providers: [AdminGuard, AuthGuard, DashboardService, HistoryService, LoginService, TextDetectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

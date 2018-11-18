@@ -22,17 +22,19 @@ I think this organization better follows the Single Responsibility Principle and
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  businessCards: Observable<BusinessCard[]>;
-  searchResults: Observable<BusinessCard[]>;
-  searchText: String;
+  businessCards: BusinessCard[];
+  searchResults: BusinessCard[];
+  emailSearchText: String;
+  nameSearchText: String;
 
 
   constructor(private dashboardService: DashboardService,
     private detectionService: TextDetectionService,
     private cardsService: BusinessCardsService) {
-      this.businessCards = this.cardsService.businessCards;
-      this.searchResults = this.cardsService.searchResults;
-      this.searchText = '';
+      this.cardsService.businessCards.subscribe(cards => this.businessCards = cards);
+      this.cardsService.searchResults.subscribe(results => this.searchResults = results);
+      this.emailSearchText = '';
+      this.nameSearchText = '';
   }
 
   ngOnInit() {
@@ -46,9 +48,15 @@ export class DashboardComponent implements OnInit {
     this.detectionService.textDetection(imageUri);
   }
 
-  onSearch(): void {
-    console.log('search was clicked: ' + this.searchText);
-    this.cardsService.searchByEmail(this.searchText);
-    this.searchText = '';
+  onSearchByEmail(): void {
+    console.log('search was clicked: ' + this.emailSearchText);
+    this.cardsService.searchByEmail(this.emailSearchText);
+    this.emailSearchText = '';
+  }
+
+  onSearchByName(): void {
+    console.log('search was clicked: ' + this.nameSearchText);
+    this.cardsService.searchByName(this.nameSearchText);
+    this.nameSearchText = '';
   }
 }
