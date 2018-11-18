@@ -1,0 +1,5 @@
+<div>
+  <p *ngFor="let history of historyList | async">
+    {{ history.timestamp}}: {{ history.description }}
+  </p>
+</div>

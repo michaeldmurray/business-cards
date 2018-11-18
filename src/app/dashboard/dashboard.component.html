@@ -1,3 +1,25 @@
-<p>
-  dashboard works!
-</p>
+<div>
+    <button (click)="onDetectionClick()" class="btn btn-primary btn-danger"> Detect </button>
+</div>
+<div>
+    <h5>Search Cards</h5>
+    <div>
+        <input
+          placeholder="enter email"
+          [(ngModel)]="searchText"
+        />
+    </div>
+    <div>
+        <button (click)="onSearch()">Search</button>
+    </div>
+</div>
+<div>
+    <h5>Search Results</h5>
+</div>
+<div>
+    <h5>All Business Cards</h5>
+    <app-business-card
+      *ngFor = "let card of businessCards | async"
+      [businessCard]="card">
+    </app-business-card>
+</div>
