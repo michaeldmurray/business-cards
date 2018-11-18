@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
 
+## Progress Notes
+* This code is available on github at https://github.com/michaeldmurray/business-cards.
+* UI Styling has yet to be completed.
+* Google Analytics has yet to be added.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
