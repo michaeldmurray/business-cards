@@ -8,10 +8,14 @@ import { BusinessCard } from './business-cards.service';
 })
 export class BusinessCardComponent implements OnInit {
   @Input() businessCard: BusinessCard;
+  private externalImage: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.externalImage = this.businessCard.imageUri && this.businessCard.imageUri.startsWith('http');
+    console.log(this.businessCard.imageUri);
+    console.log(this.externalImage);
   }
 
 }

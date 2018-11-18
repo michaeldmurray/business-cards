@@ -15,14 +15,16 @@ export class TextDetectionService {
 
   textDetection(imageUri: String) {
     this.historyService.addHistory('User performed text detection on business card');
-    const request: any = {
+    const webImage: boolean = imageUri.startsWith('http');
+    const cleanedUri = webImage ? imageUri : imageUri.replace('data:image/png;base64,', '');
+    const imageObj = webImage ?
+      {'source': {'imageUri': cleanedUri}} :
+      {'content': cleanedUri};
+
+      const request: any = {
       'requests': [
         {
-          'image': {
-            'source': {
-              'imageUri': imageUri
-            },
-          },
+          'image': imageObj,
           'features': [
             {
               'type': 'TEXT_DETECTION',
@@ -32,6 +34,7 @@ export class TextDetectionService {
         }
       ]
     };
+
     const url = `https://vision.googleapis.com/v1/images:annotate?key=${environment.CSC436}`;
     this.http.post(
       url,
@@ -53,7 +56,7 @@ export class TextDetectionService {
         card.lastName = '';
       }
       card.extraText = result;
-      card.imageUri = imageUri;
+      card.imageUri = cleanedUri;
       console.log(card);
       this.cardsService.addBusinessCard(card);
     });

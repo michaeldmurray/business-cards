@@ -1,0 +1,11 @@
+<!-- Thanks to Nic Raboy's guide at https://x-team.com/blog/webcam-image-capture-angular/ -->
+<div id="app">
+    <div><video #video id="video" width="640" height="480" autoplay></video></div>
+    <div><button id="snap" (click)="onCaptureImage()">Capture Image</button></div>
+    <canvas #canvas id="canvas" width="640" height="480"></canvas>
+    <ul>
+        <li *ngFor="let c of captures">
+            <img src="{{ c }}" height="50" />
+        </li>
+    </ul>
+</div>

@@ -5,10 +5,12 @@ import { Observable } from 'rxjs';
 import { BusinessCard, BusinessCardsService } from '../business-card/business-cards.service';
 
 /*
-Note to professor: I've tried to keep my code organized by separating responsbilities into several services.
+Note to professor: I've tried to keep my code organized by separating responsbilities into several services and components.
 - BusinessCardsService is responsible for adding, updating and watching firebase cards list.
 - TextDetectionService is responsible for making API calls to image parser and submitting resulting cards to be added.
 - HistoryService is responsbile for adding and watching firebase history list.
+- HistoryComponent is responsible for displaying user history.
+- ImageCaptureComponent is responsible for interacting with camera and taking pictures to send to TextDetectionService.
 
 Login and Dashboard services remain to handle login/logout and navigation.
 
@@ -41,11 +43,12 @@ export class DashboardComponent implements OnInit {
   }
 
   onDetectionClick(): void {
-    const imageUri =
+    const jDoeImageUri =
     'https://d2slcw3kip6qmk.cloudfront.net/marketing/press/images/template-gallery/business-card-bold-impressions-01.jpg';
-    // const imageUri =
-    //   'https://lh3.googleusercontent.com/-sQsJlPZIPTc/ThwkpQeADtI/AAAAAAAAAuI/MWUH1I_7X0A/w530-h289-n/patrick-bateman-card.png';
-    this.detectionService.textDetection(imageUri);
+    const batemanImageUri =
+      'https://lh3.googleusercontent.com/-sQsJlPZIPTc/ThwkpQeADtI/AAAAAAAAAuI/MWUH1I_7X0A/w530-h289-n/patrick-bateman-card.png';
+    this.detectionService.textDetection(jDoeImageUri);
+    this.detectionService.textDetection(batemanImageUri);
   }
 
   onSearchByEmail(): void {

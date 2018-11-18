@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BusinessCardComponent } from './business-card/business-card.component';
 import { HistoryComponent } from './history/history.component';
+import { ImageCaptureComponent } from './image-capture/image-capture.component';
 
 import { firebaseConfig } from '../environments/environment';
 
@@ -33,7 +34,8 @@ import { AuthGuard } from './login/auth.guard';
     LoginComponent,
     DashboardComponent,
     BusinessCardComponent,
-    HistoryComponent
+    HistoryComponent,
+    ImageCaptureComponent
   ],
   imports: [
     BrowserModule,

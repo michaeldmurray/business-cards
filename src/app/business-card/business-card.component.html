@@ -1,5 +1,6 @@
 <div style="border: 1px solid black">
-  <img src="{{ businessCard.imageUri }}">
+  <img *ngIf="!externalImage" src="data:image/png;base64,{{ businessCard.imageUri }}">
+  <img *ngIf="externalImage" src="{{ businessCard.imageUri }}">
   <p>Name: {{ businessCard.firstName }} {{ businessCard.lastName }}</p>
   <p>Phone Number: {{ businessCard.phoneNumber }}</p>
   <p>Email Address: {{ businessCard.email }}</p>
